@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour-Academy-B5</title>
+    <link rel="stylesheet" href="CSS/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h1>Nour Academy</h1>
+            <p>Espace Enseignant</p>
+        </div>
+        <div class="profil">
+        </div>
+    </header>
+<main>
+    <div class="section-header">
+        <div>
+            <p>Séance du jour</p>
+            <h2>Faire l'appel</h2>
+        </div>
+        <p id="compteur" class="compteur">0 élèves</p>
+    </div>
+
+    <div class="layout">
+        <section id="eleves" class="students-panel">
+            <div class="filters">
+                <input type="search" id="recherche" placeholder="Rechercher un élève par prénom ou nom...">
+
+                <select name="filtre-groupe" id="filtre-groupe">
+                <option value="">Tous les groupes</option>
+                </select>
+            </div>
+            <button type="button" id="ouvrir-formulaire">
+               + Ajouter un élève
+            </button>
+            <ul id="liste-eleves" class="students-grid"></ul>
+        </section>
+
+        <aside class="stats-panel">
+    <h2>Bilan du groupe</h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Moyenne</h3>
+            <p id="moyenne-groupe">—</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Absences</h3>
+            <p id="total-absences">0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Alertes</h3>
+            <p id="total-alertes">0</p>
+        </div>
+    </div>
+
+    <div class="parents-section">
+        <h3>Parents à appeler</h3>
+        <ul id="liste-parents"></ul>
+        <p id="aucune-alerte">Aucun parent à contacter.</p>
+    </div>
+</aside>
+        </aside>
+    </div>
+    <dialog id="dialog-ajout">
+        <form id="form-ajout" class="form-actions">
+            <label for="prenom">prénom</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="groupe">Groupe</label>
+            <select id="groupe" name="groupe" required>
+            <option value="">Choisir un groupe</option>
+            </select>
+
+            <label for="telephone-parent">Téléphone du parent</label>
+            <input
+            type="tel"
+            id="telephone-parent"
+            name="telephoneParent"
+            placeholder="0612345678"
+            required
+            >
+
+            <label for="code-acces">Code d'accès temporaire</label>
+            <input
+            type="text"
+            id="code-acces"
+            name="codeAcces"
+            placeholder="Ex : ABC123"
+            required
+            > 
+
+
+            <div class="form-buttons">
+           <button type="button" id="annuler-ajout">Annuler</button>
+           <button id="ajouter-eleve" type="submit">Ajouter l'élève</button>
+           </div>
+        </form>
+    </dialog>
+
+</main>
+</body>
+</html>
