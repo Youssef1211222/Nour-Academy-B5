@@ -14,6 +14,8 @@ annulerbutton.addEventListener("click" , function() {
 })
 
 const listeEleves = document.getElementById("liste-eleves")
+const groupefiltre = document.getElementById("filtre-groupe")
+const recherche = document.getElementById("recherche")
 
 function creerLigne(eleve) {
     const card = document.createElement("li");
@@ -29,32 +31,39 @@ function creerLigne(eleve) {
         const somme = eleve.notes.reduce((total , note) => total + note , 0);
         const moyenn = somme / eleve.notes.length;
         moyennEleve.textContent = "Moyenne :" + " " + moyenn.toFixed(2)
-        card.append(moyennEleve) 
+        
+    }else {
+        moyennEleve.textContent = "Moyenne : —";
     }
+    card.append(moyennEleve) 
     return card;   
 }
 
 function afficherElevesFiltres() {
-    
-}
-
-const cards = eleves.map(creerLigne);
-listeEleves.append(...cards);
-
-if (eleves.length === 0) {
+    const nomRecherche = recherche.value.toLowerCase();
+    const groupeChoisi = groupefiltre.value;
+    const resultat = eleves.filter(function(eleve) {
+        const nomComplet = eleve.prenom + " " + eleve.nom
+        const correspondNom = nomComplet.toLowerCase().includes(nomRecherche)
+        const correspondGroupe = (groupeChoisi === "" || Number(groupeChoisi) === eleve.groupeId)
+        return correspondGroupe && correspondNom
+    })
+    listeEleves.replaceChildren();
+    const cards = resultat.map(creerLigne)
+    listeEleves.append(...cards)
+    if (resultat.length === 0) {
     const aucuneleve  = document.createElement("p");
     aucuneleve.textContent = "Aucun élève trouvé"
     listeEleves.append(aucuneleve)
     aucuneleve.classList.add("aucuneleve")
 }
-
 const compteur = document.getElementById("compteur")
-const nombreEleve = eleves.length
-compteur.textContent = nombreEleve + " " + "éléves"
+const nombreEleve = resultat.length
+compteur.textContent = nombreEleve + " " + "élèves"
+}   
 
-
-const groupefiltre = document.getElementById("filtre-groupe")
- 
+recherche.addEventListener("input", afficherElevesFiltres);
+groupefiltre.addEventListener("change", afficherElevesFiltres);
 
 
 groupes.forEach(function (groupe) {
@@ -63,32 +72,12 @@ groupes.forEach(function (groupe) {
     groupeoption.textContent = groupe.nom
     groupefiltre.append(groupeoption)
 }) 
-
-const recherche = document.getElementById("recherche")
-recherche.addEventListener("input" , function(event) {
-    const elevenom = event.target.value.toLowerCase()
-    const resultat = eleves.filter(function(eleve) {
-    const nomComplet = eleve.prenom + " " + eleve.nom;
-    return nomComplet.toLowerCase().includes(elevenom);
-    })
-    listeEleves.replaceChildren();
-    const filternom = resultat.map(creerLigne)
-    listeEleves.append(...filternom)
-})
+afficherElevesFiltres();
 
 
 
 
-groupefiltre.addEventListener("change" , function(event) {
-    const groupeChoisi = Number(event.target.value);
-    const resultat = eleves.filter(function(eleve) {
-    if (event.target.value === "") return true;
-    return (eleve.groupeId === groupeChoisi)
-    
-})
-    listeEleves.replaceChildren();
-    const fillterafiche = resultat.map(creerLigne);
-    listeEleves.append(...fillterafiche)
-})
+
+
 
 
