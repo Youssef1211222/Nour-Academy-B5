@@ -101,7 +101,20 @@ groupes.forEach(function (groupe) {
     groupefiltre.append(groupeoption)
 }) 
 
-
+function afficherParentsAAppeler() {
+    const elevesAlertes = eleves.filter(function (eleve) {
+        return eleve.absences >= 3;
+    })
+    const parentsSection = document.getElementById("liste-parents");
+    parentsSection.replaceChildren();
+    elevesAlertes.forEach(function (eleve) {
+            const absence = document.createElement("li")
+            absence.classList.add("absencecss")
+            absence.textContent = eleve.prenom + "  " + eleve.nom + "  " + "Tel" + "   -   " + eleve.telephoneParent
+            parentsSection.append(absence)
+    })
+}
+afficherParentsAAppeler();
 
 
 

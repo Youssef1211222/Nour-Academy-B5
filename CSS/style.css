@@ -312,6 +312,23 @@ aside h2 {
     color: #DC2626;
     font-weight: bold;
 }
+.parents-section {
+    text-align: center;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: solid wheat;
+    box-shadow: 0 10px 30px rgba(139, 69, 56, 0.25);
+}
+.absencecss {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--color-text);
+    line-height: 30px;
+    
+}
 
 
 
