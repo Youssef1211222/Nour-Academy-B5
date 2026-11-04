@@ -20,11 +20,18 @@ const recherche = document.getElementById("recherche")
 function creerLigne(eleve) {
     const card = document.createElement("li");
     card.classList.add("student-card");
+    if (eleve.absences >= 3) {
+        card.classList.add("absence-alert")
+    }
     const nomEleve = document.createElement("h3");
     nomEleve.textContent = eleve.prenom + " " + eleve.nom
     card.append(nomEleve)
     const absencesEleve = document.createElement("p")
-    absencesEleve.textContent = "Absences :" + " " +eleve.absences
+    absencesEleve.textContent = "Absences :" + " " + eleve.absences
+    if (eleve.absences >= 3) {
+    absencesEleve.classList.add("absence-text-alert");
+    
+    }
     card.append(absencesEleve)
     const moyennEleve = document.createElement("p")
     if (eleve.notes.length > 0) {
@@ -36,8 +43,29 @@ function creerLigne(eleve) {
         moyennEleve.textContent = "Moyenne : —";
     }
     card.append(moyennEleve) 
+    const boutonAbsence = document.createElement("button")
+    boutonAbsence.textContent = "Ajouter une absence"
+    boutonAbsence.classList.add("btn-Absence")
+    card.append(boutonAbsence)
+    boutonAbsence.dataset.id = eleve.id;
+
     return card;   
 }
+
+listeEleves.addEventListener("click" , function(event) {
+    const bouton = event.target.closest(".btn-Absence");
+    if (bouton) {
+        const idEleve = Number(bouton.dataset.id);
+        const eleveTrouve  = eleves.find(function (eleve) {
+            return eleve.id === idEleve
+        })
+        if (eleveTrouve) {
+            eleveTrouve.absences += 1;
+            afficherElevesFiltres();
+        }
+        
+    }
+})
 
 function afficherElevesFiltres() {
     const nomRecherche = recherche.value.toLowerCase();
@@ -72,6 +100,21 @@ groupes.forEach(function (groupe) {
     groupeoption.textContent = groupe.nom
     groupefiltre.append(groupeoption)
 }) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 afficherElevesFiltres();
 
 
