@@ -2,6 +2,7 @@
 
 const bouttonajout = document.getElementById("ouvrir-formulaire")
 const dialogajout = document.getElementById("dialog-ajout")
+const dialognote =document.getElementById("dialog-note")
 
 bouttonajout.addEventListener("click" , function() {
     dialogajout.showModal();
@@ -49,11 +50,30 @@ function creerLigne(eleve) {
     card.append(boutonAbsence)
     boutonAbsence.dataset.id = eleve.id;
 
+    const boutonNote = document.createElement("button")
+    boutonNote.textContent = "Ajouter une note"
+    boutonNote.classList.add("btn-Note")
+    card.append(boutonNote)
+    boutonNote.dataset.id = eleve.id
+
     return card;   
 }
-
+let idEleveSelectionne = null;
 listeEleves.addEventListener("click" , function(event) {
     const bouton = event.target.closest(".btn-Absence");
+    const Nbouton = event.target.closest(".btn-Note")
+    const noteD = document.getElementById("dialog-note")
+
+    if (Nbouton) {
+        noteD.showModal();
+        dialognote.classList.remove("hidden")
+        dialognote.classList.add("show")
+        const idEleve = Number(Nbouton.dataset.id)
+        idEleveSelectionne = idEleve
+        eleves.find(function(eleve) {
+            return eleve.id === idEleve
+        })
+    }
     if (bouton) {
         const idEleve = Number(bouton.dataset.id);
         const eleveTrouve  = eleves.find(function (eleve) {
@@ -61,9 +81,35 @@ listeEleves.addEventListener("click" , function(event) {
         })
         if (eleveTrouve) {
             eleveTrouve.absences += 1;
+            afficherParentsAAppeler();
             afficherElevesFiltres();
         }
         
+    }
+})
+const annulerA = document.getElementById("annuler-note")
+const noteD = document.getElementById("dialog-note")
+annulerA.addEventListener("click" ,function(){
+    noteD.close();
+    dialognote.classList.add("hidden")
+dialognote.classList.remove("show")
+
+})
+const confirm = document.getElementById("confirmer-note")
+confirm.addEventListener("click", function() {
+        dialognote.classList.add("hidden")
+        dialognote.classList.remove("show")
+    const input = document.getElementById("input-note")
+    const inputNote = Number(input.value)
+    if (inputNote < 0 || inputNote > 20) return
+    const eleveTrouve = eleves.find(function(eleve) {
+        return idEleveSelectionne === eleve.id
+    })
+    if (eleveTrouve) {
+        eleveTrouve.notes.push(inputNote)
+        afficherElevesFiltres();
+        noteD.close();
+        input.value = ""
     }
 })
 
@@ -107,6 +153,12 @@ function afficherParentsAAppeler() {
     })
     const parentsSection = document.getElementById("liste-parents");
     parentsSection.replaceChildren();
+    if (elevesAlertes.length === 0) {
+        const acounalert = document.createElement("li");
+        acounalert.classList.add("acoun-css")
+        acounalert.textContent = "Aucun parent à contacter"
+        parentsSection.append(acounalert)
+    }
     elevesAlertes.forEach(function (eleve) {
             const absence = document.createElement("li")
             absence.classList.add("absencecss")

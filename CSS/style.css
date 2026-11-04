@@ -286,13 +286,13 @@ aside h2 {
     text-align: center;
 }
 .btn-Absence {
-    color: var(--color-secondary);
+    color: var(--color-primary);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 5px;
-    font-size: 15px;
+    font-size: 12px;
     border-radius: 8px;
-    border: solid white;
-    background-color: cornsilk;
+    border: solid rgba(239, 68, 68, 0.3);
+    background-color: var(--color-white);
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(139, 69, 56, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -329,6 +329,91 @@ aside h2 {
     line-height: 30px;
     
 }
+.btn-Note {
+    color: var(--color-primary);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 8px;
+    border: solid rgba(11, 250, 11, 0.25);
+    background-color: var(--color-white);
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(11, 232, 33, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 8px ;
+    margin-left: 6px;
+    cursor: pointer;
+}
+.btn-Note:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(139, 69, 56, 0.4);
+}
+#dialog-note {
+    width: 600px;
+ 
+    align-items: center;
+    justify-content: space-around;
+    border: solid white;
+    border-radius: 8px;
+    background-color: lightyellow;
+    box-shadow: 0 10px 30px rgba(139, 69, 56, 0.25);
+    
+}
+.show {
+    display: flex;
+}
+.hidden {
+    display:  none;
+}
+#dialog-note h2 {
+    color: var(--color-secondary);
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+#dialog-note input {
+    padding: 5px;
+    width: 150px;
+    border-radius: 8px;
+    border: solid var(--color-secondary);
+}
+.boutons {
+    display: flex;
+    gap: 10px;
+}
+#confirmer-note {
+    font-size: 15px;
+    padding-inline: 8px;
+    border-radius: 5px;
+    background-color: white;
+    border: solid rgba(105, 242, 105, 0.25);
+    box-shadow: 0 10px 30px rgba(139, 69, 56, 0.25);
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#confirmer-note:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(139, 69, 56, 0.4);
+}
+#annuler-note {
+    font-size: 15px;
+    padding-inline: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: solid rgba(248, 44, 67, 0.25); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#annuler-note:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(139, 69, 56, 0.4);
+}
+.acoun-css {
+    color: var(--color-primary);
+}
+
+
 
 
 
