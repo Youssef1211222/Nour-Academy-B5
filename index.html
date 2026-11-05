@@ -69,18 +69,41 @@
         </aside>
     </div>
     <dialog id="dialog-ajout">
-        <form id="form-ajout" class="form-actions">
+        <form id="form-ajout" class="form-actions" novalidate>
+
+        <div class="prenom-part">
             <label for="prenom">prénom</label>
             <input type="text" id="prenom" name="prenom" required>
+            <p class="prenom-error"></p>
+        </div>
 
+        <div class="nom-part">
             <label for="nom">Nom</label>
             <input type="text" id="nom" name="nom" required>
+            <p class="nom-error"></p>
+        </div>
 
+        <div class="groupes-part">
             <label for="groupe">Groupe</label>
             <select id="groupe" name="groupe" required>
             <option value="">Choisir un groupe</option>
             </select>
+            <p class="groupes-error"></p>
+        </div>
 
+        <div class="email-part">
+            <label for="email-parent">Email du parent</label>
+            <input
+            type="email"
+            id="email-parent"
+            name="emailParent"
+            placeholder="exemple@gmail.com"
+            required
+            >
+            <p class="email-error"></p>
+        </div>
+
+        <div class="telephone-part">
             <label for="telephone-parent">Téléphone du parent</label>
             <input
             type="tel"
@@ -89,7 +112,10 @@
             placeholder="0612345678"
             required
             >
+            <p class="telephone-error"></p>
+        </div>
 
+        <div class="code-part">
             <label for="code-acces">Code d'accès temporaire</label>
             <input
             type="text"
@@ -98,7 +124,8 @@
             placeholder="Ex : ABC123"
             required
             > 
-
+            <p class="code-error"></p>
+        </div>
 
             <div class="form-buttons">
            <button type="button" id="annuler-ajout">Annuler</button>

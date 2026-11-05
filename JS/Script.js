@@ -166,20 +166,75 @@ function afficherParentsAAppeler() {
             parentsSection.append(absence)
     })
 }
+const addOption = document.getElementById("groupe")
+
+groupes.forEach(function(groupe) {
+    const newoption = document.createElement("option")
+    newoption.textContent =groupe.nom
+    newoption.value = groupe.id
+    addOption.append(newoption)
+})
+
+const prenomInput = document.getElementById("prenom")
+const regexPrenom = /^[A-Za-zÀ-ÖØ-öø-ÿ -]*$/
+prenomInput.addEventListener("input", function(event) {
+    const virifierPrenom = event.target.value
+    const errorPrenom = document.getElementById("prenom-error")
+    if (regexPrenom.test(virifierPrenom)) {
+
+    }
+    
+})
+
+const submitForm = document.getElementById("form-ajout");
+
+submitForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const prenomInput = document.getElementById("prenom");
+    const nomInput = document.getElementById("nom");
+    const groupeMenu = document.getElementById("groupe");
+    const emailInput = document.getElementById("email-parent");
+    const telephoneInput = document.getElementById("telephone-parent");
+    const codeInput = document.getElementById("code-acces");
+
+    const prenomValue = prenomInput.value.trim();
+    const nomValue = nomInput.value.trim();
+    const groupeValue = groupeMenu.value;
+    const emailValue = emailInput.value.trim();
+    const telephoneValue = telephoneInput.value.trim();
+    const codeValue = codeInput.value;
+    
+
+
+    const elevesID = eleves.map(function (eleve) {
+        return eleve.id
+    })
+    const maxID = Math.max(...elevesID)
+    const newID = maxID + 1;
+    
+    const eleveExiste = eleves.some(function(eleve) {
+        return eleve.prenom.toLowerCase() === prenomValue.toLowerCase()&&eleve.nom.toLowerCase() === nomValue.toLowerCase()&&eleve.groupeId === Number(groupeValue)
+        
+    })
+
+    const nouvelEleve = {
+        id: newID,
+        prenom : prenomValue,
+        nom : nomValue,
+        groupeId : Number(groupeValue),
+        emailParent : emailValue,
+        telephoneParent : telephoneValue,
+        absences : 0,
+        notes : []
+    }
+});
+
+
+
+
+
 afficherParentsAAppeler();
-
-
-
-
-
-
-
-
-
-
-
-
-
 afficherElevesFiltres();
 
 

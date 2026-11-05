@@ -195,11 +195,25 @@ aside h2 {
     background-color: lightyellow;
     box-shadow: 0 10px 30px rgba(139, 69, 56, 0.25);
 }
-#form-ajout {
+#dialog-ajout {
+    margin-top: 1px;
+    margin-right: 300px;
+}
+.prenom-error,
+.nom-error,
+.groupes-error,
+.telephone-error,
+.code-error {
+    margin: 4px 0 0;
+    min-height: 16px;
+    font-size: 12px;
+    color: red;
+}
+#form-ajout div{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 0;
+    margin-bottom: 5px;
 }
 #dialog-ajout input {
     width: 500px;
@@ -413,6 +427,10 @@ aside h2 {
     color: var(--color-primary);
 }
 
+.Rejete {
+    color: red;
+    font-size: small;
+}
 
 
 
