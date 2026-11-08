@@ -433,5 +433,19 @@ aside h2 {
 }
 
 
+#dialog-error.success {
+    border-top: 5px solid green;
+}
 
+#dialog-error.error {
+    border-top: 5px solid red;
+}
+
+#dialog-error.success p {
+    color: green;
+}
+
+#dialog-error.error p {
+    color: red;
+}
 
